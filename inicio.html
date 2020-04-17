@@ -1,0 +1,353 @@
+<!DOCTYPE hmtl>
+
+<html class="no-js">
+
+   <head>
+
+	<title>Drums Set To Play</title>
+
+	<script src=""></script>
+
+
+   </head>
+
+
+
+	<style>
+
+		body {
+
+				background-color: rgba(0,0,0,.5);
+				font-family: courier;
+				padding-top: 50px;
+		
+				
+
+}
+
+
+
+
+
+
+		.key {
+				border:10px solid red;
+				border-radius: 20%;
+				margin:10px;
+				font-size:20px;
+				width:200px;
+				transition:all .07s ease;
+				height:200px;
+				text-align:center;
+				color:red;
+			
+}
+
+
+
+		.key:hover {
+				border:15px solid red;
+
+				border-radius: 20%;
+				margin:6px;
+				font-size:20px;
+				width:230px;
+				transition:all .07s ease;
+				height:230px;
+				text-align:center;
+				color:black;
+			
+}
+
+
+
+
+
+
+
+
+
+		.row { 
+
+				display:flex;
+				flex:1;
+				align-items:center;
+				justify-content:center;
+				
+}
+
+
+
+
+		audio {
+
+				display:none;
+}
+
+
+
+
+/*		.playing {
+
+
+				border:3px solid yellow;
+				transform:scale (1.2);
+				
+
+
+}*/
+
+
+
+
+
+		
+	</style>
+
+
+
+
+	<body>
+
+	   <div class="row">
+
+
+		<div data-key="69" class="key"> E </div>
+
+		<div data-key="82" class="key"> R </div>
+
+		<div data-key="84" class="key"> T </div>
+
+		<div data-key="89" class="key"> Y </div>
+
+
+	    </div>
+
+
+
+
+            <div class="row">
+
+
+		<div data-key="68" class="key"> D </div>
+
+		<div data-key="70" class="key"> F </div>
+
+		<div data-key="71" class="key"> G </div>
+
+		<div data-key="72" class="key"> H </div>
+
+
+	    </div>
+
+
+	    <div class="row">
+
+
+		<div data-key="67" class="key"> C </div>
+
+		<div data-key="86" class="key"> V </div>
+
+		<div data-key="66" class="key"> B </div>
+
+		<div data-key="78" class="key"> N </div>
+
+
+	    </div>	
+
+
+
+
+
+
+		<audio data-key="69" class="audio" controls>
+
+			<source 
+src="audio/1.wav">
+
+		</audio>
+
+
+
+		
+
+		<audio data-key="82" class="audio" controls>
+
+			<source 
+
+src="audio/2.wav">
+
+		</audio>
+
+
+	
+		<audio data-key="84" class="audio" controls>
+
+			<source 
+src="audio/3.wav">
+
+		</audio>
+
+
+
+		
+
+		<audio data-key="89" class="audio" controls>
+
+			<source 
+
+src="audio/4.wav">
+
+		</audio>
+
+
+
+		<audio data-key="68" class="audio" controls>
+
+			<source 
+src="audio/5.wav">
+
+		</audio>
+
+
+
+		
+
+		<audio data-key="70" class="audio" controls>
+
+			<source 
+
+src="audio/6.wav">
+
+		</audio>
+
+
+
+
+		<audio data-key="71" class="audio" controls>
+
+			<source 
+src="audio/7.wav">
+
+		</audio>
+
+
+
+		
+
+		<audio data-key="72" class="audio" controls>
+
+			<source 
+
+src="audio/8.wav">
+
+		</audio>
+
+
+
+		<audio data-key="67" class="audio" controls>
+
+			<source 
+
+src="audio/9.wav">
+
+		</audio>
+
+
+
+		<audio data-key="86" class="audio" controls>
+
+			<source 
+
+src="audio/10.wav">
+
+		</audio>
+
+
+
+		<audio data-key="66" class="audio" controls>
+
+			<source 
+
+src="audio/11.wav">
+
+		</audio>
+
+
+
+		<audio data-key="78" class="audio" controls>
+
+			<source 
+
+src="audio/12.wav">
+
+		</audio>
+
+
+
+
+
+
+
+
+
+		<script>
+
+
+
+
+// ========================================
+//=============AQUI COMIENZA EL CODIGO=====
+
+
+			function playSound (e) {
+
+					const audio = document.querySelector (`audio[data-key="${e.keyCode}"]`);
+
+					const key = document.querySelector (`.key[data-key="${e.keyCode}"]`);
+
+					if (!audio) return; // detiene la funcion si no hay archivo de audio
+					audio.currentTime = 0; //se reproduce si la tecla es pulsada multiples veces
+
+					audio.play();
+					
+					key.classList.add('playing');
+}
+
+
+
+			function removeTransition (e){
+					
+					if (e.propertyName !== 'transform') return; 
+					this.classList.remove ('playing');
+
+
+}
+
+
+			window.addEventListener ('keydown', playSound);
+
+
+
+			const keys = document.querySelectorAll('.key');
+
+			keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+
+
+
+
+
+
+
+		</script>
+
+
+
+
+
+	</body>
+
+
+
+</html>
